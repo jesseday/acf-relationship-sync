@@ -89,14 +89,16 @@ class ManyToMany {
     /**
      * Get the sets of fields that contain a field with the given name and type.
      *
-     * @param $field_name
+     * @param $field
      *
      * @return array
      */
-    private function get_related( $field_name ) {
-        return array_filter( $this->related_fields, function ( $set ) use ( $field_name ) {
-            return in_array( $field_name, $set );
+    private function get_related( $field ) {
+        $related_sets =  array_filter( $this->related_fields, function ( $set ) use ( $field ) {
+            return in_array( $field, $set );
         } );
+
+        return apply_filters('acf_relationship_sync/get_related/many_to_many', $related_sets, $field );
     }
 }
 
