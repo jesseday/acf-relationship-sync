@@ -62,8 +62,8 @@ class OneToMany {
         foreach ( $related_fields as $set ) {
             $field_set = new \RelationshipSync\Relationships\OneToMany( $set['single_value_field'], $set['multi_value_field'] );
 
-            $field_set->update_many_on_one( $post_id, $value );
-            $field_set->remove_many_from_one( $value, $post_id );
+            $field_set->add_relationship( $post_id, $value );
+            $field_set->remove_relationship( $value, $post_id );
         }
 
         // Reset global variable to allow this filter to function as per normal
@@ -100,8 +100,8 @@ class OneToMany {
         foreach ( $related_fields as $set ) {
             $field_set = new \RelationshipSync\Relationships\OneToMany( $set['single_value_field'], $set['multi_value_field'] );
 
-            $field_set->update_one_on_many( $value, $post_id );
-            $field_set->remove_one_from_many( $value, $post_id );
+            $field_set->add_relationships( $value, $post_id );
+            $field_set->remove_relationships( $value, $post_id );
         }
 
 

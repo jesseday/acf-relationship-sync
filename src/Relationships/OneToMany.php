@@ -21,7 +21,7 @@ class OneToMany {
         return $this->multi_value_field;
     }
 
-    public function update_many_on_one( $reference_post_id, $post_id ) {
+    public function add_relationship( $reference_post_id, $post_id ) {
         if ( empty( $post_id ) ) {
             return;
         }
@@ -36,7 +36,7 @@ class OneToMany {
         update_field( $this->multi_value_field['key'], $updated_references, $post_id );
     }
 
-    public function remove_many_from_one( $new_value, $post_id ) {
+    public function remove_relationship( $new_value, $post_id ) {
         $old_value = get_field( $this->single_value_field['name'], $post_id, FALSE );
         if ( $old_value == $new_value ) {
             return;
@@ -63,7 +63,7 @@ class OneToMany {
      * @param $posts
      * @param $reference_post_id
      */
-    public function update_one_on_many( $posts, $reference_post_id ) {
+    public function add_relationships( $posts, $reference_post_id ) {
         if ( ! is_array( $posts ) ) {
             return;
         }
@@ -86,7 +86,7 @@ class OneToMany {
      * @param $posts
      * @param $reference_post_id
      */
-    public function remove_one_from_many( $posts, $reference_post_id ) {
+    public function remove_relationships( $posts, $reference_post_id ) {
         if ( ! is_array( $posts ) ) {
             $posts = array_filter( [ $posts ] );
         }
