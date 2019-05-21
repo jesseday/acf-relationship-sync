@@ -11,4 +11,5 @@
  * @package         Acf_Relationship_Sync
  */
 
-require(plugin_dir_path( __FILE__ ) . 'src/Types/OneToMany.php');
+require(plugin_dir_path( __FILE__ ) . 'src/Listeners/OneToMany.php');
+require(plugin_dir_path( __FILE__ ) . 'src/Relationships/OneToMany.php');
