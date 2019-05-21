@@ -20,7 +20,7 @@ class OneToMany {
     }
 
     public function get_related_fields() {
-        $fields               = apply_filters( 'acf_relationship_sync_get_related_fields', [] );
+        $fields               = apply_filters( 'acf_relationship_sync/related_fields/one_to_many', [] );
         $this->related_fields = $fields ?? [];
     }
 
@@ -123,7 +123,7 @@ class OneToMany {
         $should_sync = FALSE;
         $should_sync = in_array( $field['name'], array_column( $this->related_fields, $type ) );
 
-        return apply_filters( 'acf_relationship_sync_should_sync', $should_sync, $field, $post_id, $value, $type );
+        return apply_filters( 'acf_relationship_sync/should_sync/many_to_many', $should_sync, $field, $post_id, $value, $type );
     }
 
     /**
@@ -136,7 +136,7 @@ class OneToMany {
      */
     private function get_related( $field, $type ) {
         return array_filter( $this->related_fields, function ( $set ) use ( $field, $type ) {
-            return $set[ $type ] = $field;
+            return $set[ $type ] == $field['name'];
         } );
     }
 }
