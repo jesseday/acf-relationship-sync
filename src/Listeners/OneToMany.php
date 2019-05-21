@@ -136,7 +136,7 @@ class OneToMany {
      */
     private function get_related( $field, $type ) {
         return array_filter( $this->related_fields, function ( $set ) use ( $field, $type ) {
-            return $set[ $type ] == $field['name'];
+            return $set[ $type ] == $field;
         } );
     }
 }
